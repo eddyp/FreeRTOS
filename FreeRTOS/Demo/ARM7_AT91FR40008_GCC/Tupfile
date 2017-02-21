@@ -29,23 +29,23 @@ OBJCOPY=$(TOOCHAIN_PREFIX)objcopy
 ARCH=$(TOOCHAIN_PREFIX)ar
 CRT0=boot.s
 
-RUN_MODE := RUN_FROM_RAM
-LDSCRIPT := atmel-ram.ld
+#RUN_MODE := RUN_FROM_RAM
+#LDSCRIPT := atmel-ram.ld
+#DEBUG := -g
+#USE_THUMB_MODE := NO
 OPTIM := -O0
-DEBUG := -g
-USE_THUMB_MODE := NO
 
 #
 # CFLAGS common to both the THUMB and ARM mode builds
 #
-CFLAGS=-Wall -Wextra -D$(RUN_MODE) -DGCC_AT91FR40008 -I. -I../../Source/include \
-		-I../Common/include $(DEBUG) -mcpu=arm7tdmi -T$(LDSCRIPT) \
+CFLAGS=-Wall -Wextra -D@(RUN_MODE) -DGCC_AT91FR40008 -I. -I../../Source/include \
+		-I../Common/include @(DEBUG) -mcpu=arm7tdmi -T@(LDSCRIPT) \
 		-Wcast-align $(OPTIM) -fomit-frame-pointer -fno-strict-aliasing \
 		-fno-dwarf2-cfi-asm
 
 CFLAGS += -I../../Source/portable/GCC/ARM7_AT91FR40008
 
-ifeq ($(USE_THUMB_MODE),YES)
+ifeq (@(USE_THUMB_MODE),YES)
 	CFLAGS += -mthumb-interwork -D THUMB_INTERWORK
 	THUMB_FLAGS=-mthumb
 endif
