@@ -121,8 +121,3 @@ serial/serialISR.c
 
 :rtosdemo.elf |> ^c HEX %B^ $(OBJCOPY) %f -O ihex %o |> rtosdemo.hex
 
-!gen = |> ^o GEN %f^ ./gen.sh %f |> %f.out
-:cfg.gen |> !gen |> {gen}
-
-:foreach {gen} |> cat %f >> %o |> out_gen
-
