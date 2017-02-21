@@ -116,7 +116,7 @@ serial/serialISR.c
 :foreach $(THUMB_SRC) |> !thumbcc |> {objs}
 
 #:{objs} |> ^c LINK %f^ $(CC) $(CFLAGS) -nostartfiles $(CRT0) $(LINKER_FLAGS) |> rtosdemo.elf
-!link = |> ^c LINK %o^ $(CC) $(CFLAGS) -nostartfiles $(CRT0) $(LINKER_FLAGS) |>
+!link = |> ^c LINK %o^ $(CC) %f $(CFLAGS) -nostartfiles $(CRT0) $(LINKER_FLAGS) |>
 :{objs} |> !link |> rtosdemo.elf | rtosdemo.map
 
 :rtosdemo.elf |> ^c HEX %B^ $(OBJCOPY) %f -O %o |> rtosdemo.hex
