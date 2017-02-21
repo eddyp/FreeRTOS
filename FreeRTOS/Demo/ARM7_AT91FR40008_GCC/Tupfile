@@ -119,5 +119,5 @@ serial/serialISR.c
 !link = |> ^c LINK %o^ $(CC) %f $(CFLAGS) -nostartfiles $(CRT0) $(LINKER_FLAGS) |>
 :{objs} |> !link |> rtosdemo.elf | rtosdemo.map
 
-:rtosdemo.elf |> ^c HEX %B^ $(OBJCOPY) %f -O %o |> rtosdemo.hex
+:rtosdemo.elf |> ^c HEX %B^ $(OBJCOPY) %f -O ihex %o |> rtosdemo.hex
 
